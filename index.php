@@ -39,7 +39,7 @@ for ($i = 0; $i < count($inputUri); $i++) {
     }
 }
 
-if (isset($parsedUri[0]) && $parsedUri == "clientes") {
+if (isset($parsedUri[0]) && $parsedUri[0] == "clientes") {
     echo "calmasion";
 }
 
