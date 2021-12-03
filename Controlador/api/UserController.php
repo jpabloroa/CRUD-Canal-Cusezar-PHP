@@ -41,7 +41,6 @@ class UserController extends BaseController
                     $data = json_decode(file_get_contents('php://input'), true);
                     $arrUsers = $userModel->updateCliente($UrlPaths[1], $data);
                     $this->sendOutput(200, $arrUsers, ['Registro actualizado correctamente'], 'Se cargó(aron) ' . count($arrUsers). ' cliente(s)');
-                    //$this->sendOutput(200, $data, ['Registro actualizado correctamente'], 'Respuesta!!!!!!');
                 } catch (Error $e) {
                     $this->sendOutput(500, [], ['Internal Server Error - ' . $e->getMessage()], 'Detalles: ' . $e->getMessage());
                 }
