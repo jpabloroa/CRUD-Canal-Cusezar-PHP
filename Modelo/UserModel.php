@@ -70,12 +70,12 @@ class UserModel extends Database
                 estado = ?,
                 fechaModificacionEstado = ?,
                 asignadoA = ?
-                )
             WHERE codigoConteo = $parametro",
             $cliente
         );
     }
-    public function deleteCliente($parametro = 0){
+    public function deleteCliente($parametro = 0)
+    {
         return $this->select(
             "DELETE FROM clientes WHERE codigoConteo = ?",
             ["i", $parametro]
