@@ -39,7 +39,7 @@ class UserController extends BaseController
                     $userModel = new UserModel();
 
                     $data = json_decode(file_get_contents('php://input'), true);
-                    $arrUsers = $userModel->updateCliente($UrlPaths[1], $data);
+                    //$arrUsers = $userModel->updateCliente($UrlPaths[1], $data);
                     //$this->sendOutput(200, $arrUsers, ['Registro actualizado correctamente'], 'Se cargó(aron) ' . count($arrUsers). ' cliente(s)');
                     $this->sendOutput(200, $data, ['Registro actualizado correctamente'], 'Respuesta!!!!!!');
                 } catch (Error $e) {
