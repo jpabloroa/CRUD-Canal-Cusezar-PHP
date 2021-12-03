@@ -6,6 +6,7 @@ $inputUri = explode('/', $URL);
 
 for ($i = 0; $i < count($inputUri); $i++) {
     if ($inputUri[$i] == "index.php") {
+        $k = 0;
         for ($j = $i + 1; $j < count($inputUri); $j++) {
             $parsedUri[$k] = $inputUri[$j];
             $k++;
