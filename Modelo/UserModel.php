@@ -15,6 +15,7 @@ class UserModel extends Database
     {
         $count = 0;
         foreach ($clientes as $cliente) {
+            $cliente["fechaDeCreacion"] = date("Y-m-d");
             $result = $this->insert(
                 "INSERT INTO clientes (
                 fechaDeCreacion,
