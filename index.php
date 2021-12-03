@@ -1,19 +1,24 @@
 <?php
-//require __DIR__ . "/Config/bootstrap.php";
+require __DIR__ . "/Config/bootstrap.php";
 
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$uri = explode('/', $uri);
+$URL = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$inputUri = explode('/', $URL);
 
-for ($i = 0; $i < count($uri); $i++) {
-    echo "- " . $i . ": " . $uri[$i]."<br>";
+for ($i = 0; $i < count($inputUri); $i++) {
+    if ($inputUri[$i] == "index.php") {
+        for ($j = $i + 1; $j < count($inputUri); $j++) {
+            $parsedUri[$k] = $inputUri[$j];
+            $k++;
+        }
+    }
 }
- 
-/*if ((isset($uri[2]) && $uri[2] != 'user') || !isset($uri[3])) {
-    header("HTTP/1.1 404 Not Found");
-    exit();
-}*/
- 
-//require PROJECT_ROOT_PATH . "/Controlador/api/UserController.php";
+
+for ($i = 0; $i < count($parsedUri); $i++) {
+echo " $i - $parsedUri[$i] <br>";
+}
+
+
+require PROJECT_ROOT_PATH . "/Controlador/api/UserController.php";
  
 //$objFeedController = new UserController();
 //$strMethodName = $uri[3] . 'Action';
