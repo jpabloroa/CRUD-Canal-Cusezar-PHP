@@ -126,25 +126,24 @@ class Database
                 $stmt->bind_param(
                     "bssssssbbiisiisisi",
                     // Parametros
-                    $params[0],
-                    $params[1],
-                    $params[2],
-                    $params[3],
-                    $params[4],
-                    $params[5],
-                    $params[6],
-                    $params[7],
-                    $params[8],
-                    $params[9],
-                    $params[10],
-                    $params[11],
-                    $params[12],
-                    $params[13],
-                    $params[14],
-                    $params[15],
-                    $params[16],
-                    $params[17],
-                    $params[18]
+                    $params["viable"],
+                    $params["nombre"],
+                    $params["correo"],
+                    $params["celular"],
+                    $params["medioPublicitario"],
+                    $params["zonaBusqueda"],
+                    $params["proyectoDeInteres"],
+                    $params["gestionDesdeSalaDeVentas"],
+                    $params["habeasData"],
+                    $params["fechaDeContacto"],
+                    $params["fechaDeContactoEfectivo"],
+                    $params["proyectoCalificado"],
+                    $params["fechaVisitaAgendada"],
+                    $params["fechaVisitaEfectiva"],
+                    $params["estado"],
+                    $params["fechaModificacionEstado"],
+                    $params["asignadoA"],
+                    $params["codigoConteo"]
                 );
             /*} else {
                 throw new Exception("Error de sintáxis, compruebe el tamaño de params ");
