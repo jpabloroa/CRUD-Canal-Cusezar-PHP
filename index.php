@@ -14,7 +14,8 @@ for ($i = 0; $i < count($inputUri); $i++) {
                 $k++;
             }
         } else {
-            echo "<script>alert('Será redirigido a index.html')</script>";
+            
+            echo "<h1>Ey no</h1><script>alert('Será redirigido a index.html')</script>";
             /*
             //
             if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
