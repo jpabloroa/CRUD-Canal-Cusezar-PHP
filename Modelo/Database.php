@@ -47,10 +47,13 @@ class Database
     {
         try {
             //$stmt = $this->executeStatementMultipleParams($query, $params);
-            $stmt = $this->executeStatementMultipleParams_update($query,$params);
-            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            $stmt = $this->executeStatementMultipleParams_update($query, $params);
+            if ($stmt == TRUE) {
+                return $params;
+            } else {
+                return null;
+            }
             $stmt->close();
-            return $result;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -90,17 +93,17 @@ class Database
             }
 
             //if ($params && count($params) >= 1) {
-                $stmt->bind_param(
-                    "ibssss",
-                    // Parametros
-                    $params[0],
-                    $params[1],
-                    $params[2],
-                    $params[3],
-                    $params[4],
-                    $params[5],
-                    $params[6],
-                );
+            $stmt->bind_param(
+                "ibssss",
+                // Parametros
+                $params[0],
+                $params[1],
+                $params[2],
+                $params[3],
+                $params[4],
+                $params[5],
+                $params[6],
+            );
             /*} else {
                 throw new Exception("Error de sintáxis, compruebe el tamaño de params ");
             }*/
@@ -123,28 +126,28 @@ class Database
             }
 
             //if ($params && count($params) >= 1) {
-                $stmt->bind_param(
-                    "bssssssbbiisiisisi",
-                    // Parametros
-                    $params["viable"],
-                    $params["nombre"],
-                    $params["correo"],
-                    $params["celular"],
-                    $params["medioPublicitario"],
-                    $params["zonaBusqueda"],
-                    $params["proyectoDeInteres"],
-                    $params["gestionDesdeSalaDeVentas"],
-                    $params["habeasData"],
-                    $params["fechaDeContacto"],
-                    $params["fechaDeContactoEfectivo"],
-                    $params["proyectoCalificado"],
-                    $params["fechaVisitaAgendada"],
-                    $params["fechaVisitaEfectiva"],
-                    $params["estado"],
-                    $params["fechaModificacionEstado"],
-                    $params["asignadoA"],
-                    $params["codigoConteo"]
-                );
+            $stmt->bind_param(
+                "bssssssbbiisiisisi",
+                // Parametros
+                $params["viable"],
+                $params["nombre"],
+                $params["correo"],
+                $params["celular"],
+                $params["medioPublicitario"],
+                $params["zonaBusqueda"],
+                $params["proyectoDeInteres"],
+                $params["gestionDesdeSalaDeVentas"],
+                $params["habeasData"],
+                $params["fechaDeContacto"],
+                $params["fechaDeContactoEfectivo"],
+                $params["proyectoCalificado"],
+                $params["fechaVisitaAgendada"],
+                $params["fechaVisitaEfectiva"],
+                $params["estado"],
+                $params["fechaModificacionEstado"],
+                $params["asignadoA"],
+                $params["codigoConteo"]
+            );
             /*} else {
                 throw new Exception("Error de sintáxis, compruebe el tamaño de params ");
             }*/
@@ -153,7 +156,7 @@ class Database
 
             return $stmt;
         } catch (Exception $e) {
-            throw new Exception($e->getMessage()." arraySize: ".$params);
+            throw new Exception($e->getMessage() . " arraySize: " . $params);
         }
     }
 
