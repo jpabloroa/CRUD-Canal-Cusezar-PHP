@@ -33,8 +33,8 @@ class Database
     public function insert($query = "", $params = [])
     {
         try {
-            //$stmt = $this->executeStatementMultipleParams($query, $params);
-            $stmt = $this->executeStatementMultipleParams($query);
+            $stmt = $this->executeStatementMultipleParams($query, $params);
+            //$stmt = $this->executeStatementWithOutBinding($query);
             $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             $stmt->close();
             return $result;
