@@ -8,7 +8,7 @@ for ($i = 0; $i < count($inputUri); $i++) {
     if ($inputUri[$i] == "index.php") {
         $k = 0;
         $j = $i + 1;
-        if (!$j >= count($inputUri)) {
+        if (!$j > count($inputUri)) {
             for ($j; $j < count($inputUri); $j++) {
                 $parsedUri[$k] = $inputUri[$j];
                 $k++;
