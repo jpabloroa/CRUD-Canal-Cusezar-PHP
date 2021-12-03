@@ -13,8 +13,10 @@ for ($i = 0; $i < count($inputUri); $i++) {
     }
 }
 
-echo count($inputUri);
-echo count($parsedUri);
+echo "<br>";
+
+echo "Array recibido".count($inputUri);
+echo "Array parseado".count($parsedUri);
 
 for ($i = 0; $i < count($parsedUri); $i++) {
 echo " $i - $parsedUri[$i] <br>";
