@@ -8,7 +8,7 @@ window.onload = function () {
 function cargarClientes() {
     let response = {};
     const ajaxrequest = new XMLHttpRequest();
-    var url = "index.php";
+    var url = "index.php/clientes/";
     ajaxrequest.open("GET", url, true);
     ajaxrequest.onreadystatechange = function () {
         if (ajaxrequest.readyState == 4) {
@@ -231,10 +231,9 @@ function insertarCliente(formato, valor) {
         default:
             break;
     }
-    let object = {};
-    object.datos = array;
+    let object = array;
     const ajaxrequest = new XMLHttpRequest();
-    var url = "index.php";
+    var url = "index.php/clientes/";
     ajaxrequest.open("POST", url, true);
     ajaxrequest.onreadystatechange = function () {
         if (ajaxrequest.readyState == 4) {
@@ -264,7 +263,7 @@ function insertarCliente(formato, valor) {
 function actualizarCliente(object) {
 
     const ajaxrequest = new XMLHttpRequest();
-    var url = `index.php/${object.codigoConteo} `;
+    var url = `index.php/clientes/${object.codigoConteo} `;
     ajaxrequest.open("PUT", url, true);
     ajaxrequest.onreadystatechange = function () {
         if (ajaxrequest.readyState == 4) {

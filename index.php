@@ -38,11 +38,17 @@ for ($i = 0; $i < count($inputUri); $i++) {
     }
 }
 
-if (isset($parsedUri[0]) && $parsedUri[0] == "clientes") {
-    if(isset($parsedUri[1])){
-        require PROJECT_ROOT_PATH . "/Controlador/api/UserController.php";
+if (isset($parsedUri[0]) && $parsedUri[0] == "root") {
+    require PROJECT_ROOT_PATH . "/Controlador/api/UserController.php";
 
     $objFeedController = new UserController();
-    $objFeedController->{$parsedUri[1]}();
+    $objFeedController->{$parsedUri[0]}();
+} else {
+    if (isset($parsedUri[1])) {
+        require PROJECT_ROOT_PATH . "/Controlador/api/UserController.php";
+
+        $objFeedController = new UserController();
+        $objFeedController->httpMethod($parsedUri);
+    } else {
     }
 }
