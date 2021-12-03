@@ -2,6 +2,7 @@
 //require __DIR__ . "/Config/bootstrap.php";
  
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+echo $uri;
 $uri = explode( '/', $uri );
 
 for($i = 0; $i>count($uri);$i++){
