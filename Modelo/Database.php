@@ -113,6 +113,51 @@ class Database
         }
     }
 
+    private function executeStatementMultipleParams_update($query = "", $params = [])
+    {
+        try {
+            $stmt = $this->connection->prepare($query);
+
+            if ($stmt === false) {
+                throw new Exception("No es posible ejecutar la sentencia: " . $query);
+            }
+
+            //if ($params && count($params) >= 1) {
+                $stmt->bind_param(
+                    "bssssssbbiisiisisi",
+                    // Parametros
+                    $params[0],
+                    $params[1],
+                    $params[2],
+                    $params[3],
+                    $params[4],
+                    $params[5],
+                    $params[6],
+                    $params[7],
+                    $params[8],
+                    $params[9],
+                    $params[10],
+                    $params[11],
+                    $params[12],
+                    $params[13],
+                    $params[14],
+                    $params[15],
+                    $params[16],
+                    $params[17],
+                    $params[18]
+                );
+            /*} else {
+                throw new Exception("Error de sintáxis, compruebe el tamaño de params ");
+            }*/
+
+            $stmt->execute();
+
+            return $stmt;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
     private function executeStatementWithOutBinding($query = "")
     {
         try {
