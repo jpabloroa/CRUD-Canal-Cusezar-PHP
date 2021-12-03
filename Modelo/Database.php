@@ -34,7 +34,20 @@ class Database
     {
         try {
             $stmt = $this->executeStatementMultipleParams($query, $params);
-            //$stmt = $this->executeStatementWithOutBinding($query);
+            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            return $result;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        return false;
+    }
+
+    public function insert_update($query = "", $params = [])
+    {
+        try {
+            //$stmt = $this->executeStatementMultipleParams($query, $params);
+            $stmt = $this->executeStatementWithOutBinding($query);
             $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             $stmt->close();
             return $result;
@@ -78,7 +91,7 @@ class Database
 
             //if ($params && count($params) >= 1) {
                 $stmt->bind_param(
-                    "ibssssssbbiisiisis",
+                    "ibssss",
                     // Parametros
                     $params[0],
                     $params[1],
@@ -87,18 +100,6 @@ class Database
                     $params[4],
                     $params[5],
                     $params[6],
-                    $params[7],
-                    $params[8],
-                    $params[9],
-                    $params[10],
-                    $params[11],
-                    $params[12],
-                    $params[13],
-                    $params[14],
-                    $params[15],
-                    $params[16],
-                    $params[17],
-                    $params[18]
                 );
             /*} else {
                 throw new Exception("Error de sintáxis, compruebe el tamaño de params ");

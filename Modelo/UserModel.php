@@ -18,24 +18,12 @@ class UserModel extends Database
             $result = $this->insert(
                 "INSERT INTO clientes (
                 fechaDeCreacion,
-                viable,
                 nombre,
                 correo,
                 celular,
                 medioPublicitario,
-                zonaBusqueda,
                 proyectoDeInteres,
-                gestionDesdeSalaDeVentas,
-                habeasData,
-                fechaDeContacto,
-                fechaDeContactoEfectivo,
-                proyectoCalificado,
-                fechaVisitaAgendada,
-                fechaVisitaEfectiva,
-                estado,
-                fechaModificacionEstado,
-                asignadoA
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            ) VALUES (?,?,?,?,?,?)",
                 $cliente
             );
             if ($result) {
@@ -50,26 +38,26 @@ class UserModel extends Database
         if (!is_numeric($parametro)) {
             throw new Exception("Error de sintáxis, compruebe si parametro es de tipo numérico ");
         }
-        return $this->insert(
+        return $this->insert_update(
             "UPDATE clientes SET
-                fechaDeCreacion = ?,
-                viable = ?,
-                nombre = ?,
-                correo = ?,
-                celular = ?,
-                medioPublicitario = ?,
-                zonaBusqueda = ?,
-                proyectoDeInteres = ?,
-                gestionDesdeSalaDeVentas = ?,
-                habeasData = ?,
-                fechaDeContacto = ?,
-                fechaDeContactoEfectivo = ?,
-                proyectoCalificado = ?,
-                fechaVisitaAgendada = ?,
-                fechaVisitaEfectiva = ?,
-                estado = ?,
-                fechaModificacionEstado = ?,
-                asignadoA = ?
+                fechaDeCreacion = $cliente[fechaDeCreacion],
+                viable = $cliente[viable],
+                nombre = $cliente[nombre],
+                correo = $cliente[correo],
+                celular = $cliente[celular],
+                medioPublicitario = $cliente[medioPublicitario],
+                zonaBusqueda = $cliente[zonaBusqueda],
+                proyectoDeInteres = $cliente[proyectoDeInteres],
+                gestionDesdeSalaDeVentas = $cliente[gestionDesdeSalaDeVentas],
+                habeasData = $cliente[habeasData],
+                fechaDeContacto = $cliente[fechaDeContacto],
+                fechaDeContactoEfectivo = $cliente[fechaDeContactoEfectivo],
+                proyectoCalificado = $cliente[proyectoCalificado],
+                fechaVisitaAgendada = $cliente[fechaVisitaAgandada],
+                fechaVisitaEfectiva = $cliente[fechaVisitaEfectiva],
+                estado = $cliente[estado],
+                fechaModificacionEstado = $cliente[fechaModificacionEstado],
+                asignadoA = $cliente[asignadoA],
             WHERE codigoConteo = $parametro",
             $cliente
         );
