@@ -5,7 +5,6 @@ $URL = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $inputUri = explode('/', $URL);
 
 for ($i = 0; $i < count($inputUri); $i++) {
-    echo "$inputUri[$i] <br>";
     if ($inputUri[$i] == "index.php") {
         $k = 0;
         $j = $i + 1;
@@ -15,7 +14,7 @@ for ($i = 0; $i < count($inputUri); $i++) {
                 $k++;
             }
         } else {
-            echo "viva el perez";
+            echo "<script>alert('Será redirigido a index.html')</script>";
             /*
             //
             if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
@@ -31,8 +30,9 @@ for ($i = 0; $i < count($inputUri); $i++) {
             $link .= $_SERVER['HTTP_HOST'];
 
             // Append the requested resource location to the URL
-            $link .= substr($URL, -9) . "index.html";
-
+            $link .= */ 
+            echo substr($URL, -9) . "index.html";
+/*
             header("location: $link");
             exit;*/
         }
