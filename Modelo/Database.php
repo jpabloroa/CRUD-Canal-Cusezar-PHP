@@ -34,9 +34,12 @@ class Database
     {
         try {
             $stmt = $this->executeStatementMultipleParams($query, $params);
-            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            if ($stmt == TRUE) {
+                return $params;
+            } else {
+                return null;
+            }
             $stmt->close();
-            return $result;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
