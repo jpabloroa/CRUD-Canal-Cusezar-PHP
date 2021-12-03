@@ -1,0 +1,77 @@
+---
+title: "Taller 11"
+author: "Julián Santamaría, Carlos Suárez y Juan Pablo Roa"
+date: "9/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Ejercicio C15.1
+
+```{r include=FALSE}
+# Se agregan dependencias 'haven'...
+library(haven)
+# Se agregan dependencias 'stargazer'...
+library(stargazer)
+# Se agregan dependencias 'AER'...
+library(AER)
+# Se agrega la base de datos 'WAGE2.DTA'...
+Base <- read_dta("https://qcpages.qc.cuny.edu/~rvesselinov/statadata/WAGE2.DTA")
+#view(Base)
+```
+
+```{r eval=FALSE}
+# Se agregan dependencias 'haven'...
+library(haven)
+# Se agregan dependencias 'stargazer'...
+library(stargazer)
+# Se agregan dependencias 'AER'...
+library(AER)
+# Se agrega la base de datos 'WAGE2.DTA'...
+Base <- read_dta("https://qcpages.qc.cuny.edu/~rvesselinov/statadata/WAGE2.DTA")
+#view(Base)
+```
+#### i) Punto 1
+
+
+
+#### ii) Punto 2
+
+Se realiza la regresión de *educ* sobre *brthord*, para encontrar la relación entre sí, editando el atributo **punto2** del objeto **reg**
+```{r Solución punto 2}
+# Se estima 'educ' sobre 'brthord'...
+reg.punto2 <- lm(educ~brthord,data=Base)
+# Resumen...
+summary(reg.punto2)
+# Valor de los estimadores...
+reg.punto2$coefficients 
+```
+
+Como se observa en los resultados, efectivamente, se comprueba una relación inversamente propocional entre las variables *educ* y *brthord*, específicamente a cada aumento de *educ*, *brthord* disminuye un **28,26%**. Esto sugiere que, por ejemplo y con respecto a los datos, el hecho de nacer primero, en orden de nacimientos, implica poseer un **28,26%** más de tiempo de estudio que quien nació segundo, y así susecivamente.
+
+Esto puede deberse a que simplemente, quienes nacieron antes, han tenido más tiempo para desarrollar esta actividad, o por otra parte, puede ser a causa de la diferencias culturales dadas el tiempo transcurrido.
+
+#### iii) Punto 3
+
+Dada la ecuación *(15.1)*: **log(*wage*) = B[0] + B[1] * *educ* + u**
+
+```{r Solución punto 3}
+# Se utiliza la variable 'brthord' como Variable Instrumental (VI)...
+reg.punto3 <- ivreg(log(wage)~educ|brthord,data=Base)
+# Resumen...
+summary(reg.punto3)
+# Valor de los estimadores...
+stargazer(reg.punto3, type='text')
+```
+
+#### iv) Punto 4
+
+Dada la ecuación *(15.1)*: **log(*wage*) = B[0] + B[1] * *educ* + B[2] * *sibs* + u**
+
+
+#### v) Punto 5
+
+#### vi) Punto 6

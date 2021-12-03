@@ -1,0 +1,107 @@
+---
+title: "Taller 10"
+author: "Julián Santamaría, Carlos Suárez y Juan Pablo Roa"
+date: "2/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Taller 10
+
+## Realizado por: Julián Santamaría, Carlos Suárez y Juan Pablo Roa
+
+*Configuraciones iniciales:*
+```{r eval=FALSE}
+# Se importan librerías
+
+library(AER)
+library(stargazer)
+library(haven)
+FERTIL2 <- read_dta("https://qcpages.qc.cuny.edu/~rvesselinov/statadata/FERTIL2.DTA")
+
+Base=FERTIL2
+
+#Verificamos que no hayan datos faltantes
+is.na(Base$children)
+is.na(Base$age)
+is.na(Base$educ)
+```
+
+
+**i) Primer punto**
+
+Regresión con MCO
+```{r eval=FALSE}
+reg.mco <- lm(children ~ educ+age+I((age)^2), data=Base)
+summary(reg.mco)
+```
+
+Se puede ver del resumen, la estimación de los coeficientes.
+```{r eval=FALSE}
+# 
+reg.mco$coefficients
+```
+```{r echo=FALSE}
+# 
+reg.mco$coefficients
+```
+
+Esto indica que en el caso de poseer valores nulos para la edad. El efecto de *educ* (años de educación) sobre *children* (número de hijos) es, aproximadamente, de: *-0.09057*, es decir, por cada año de educación que poseen las mujeres en Botswana el número de hijos engendrados disminuye aproximadamente en *0.09*.
+Si *100 mujeres* reciben otro año de educación se espera que, aproximadamente, se reduzcan en *9* el numero de niños totales de la población de estudio.
+
+De igual manera, si se tuviera valores nulos sobre los años de educación, por cada aumento en un año en la edad de la persona, el número de niños aumenta en *0.33*.
+
+
+**ii) Segundo punto**
+
+Relevancia y exogeneidad de IV, se adiciona la variable binaria *frsthal*
+```{r eval=FALSE}
+reliv <- lm(educ~frsthalf+age+I((age)^2),data=Base)
+summary(reliv)
+```
+Se puede ver del resumen, la estimación de los coeficientes.
+```{r eval=FALSE}
+reliv$coefficients
+```
+```{r echo=FALSE}
+reliv$coefficients
+```
+
+Se prueban los dos supuestos primordiales para mirar si se puede utilizar la variable *frsthalf*"* como variable instrumental para la variable *educ*. Primero, se observa la relevancia de la misma por medio de un modelo de regresión lineal. 
+El coeficiente implica que en Bostwana durante 1988, con la edad constante, las mujeres que nacieron durante los *primeros seis meses del año*, en promedio, tienen cinco sextos de número menos de niños que aquellos que nacieron durante los meses restantes del año. El estadístico t de *nearc4* es *16.207*, lo cual da un *valor-p* aproximado de *cero*,
+Por tanto, si *frsthal*, no está correlacionada con los factores inobservables en el término de error, se puede utilizar *nearc4* como una VI para *educ*.
+
+**ii) Tercer punto**
+
+Regresion con IV
+```{r eval=FALSE}
+reg.iv <- ivreg(children ~ educ+age+I((age)^2)|frsthalf+age+I((age)^2), data=Base )
+summary(reg.iv)
+stargazer(reg.mco,reg.iv, type="text")
+```
+
+Comparación MCO y IV
+```{r echo=FALSE}
+stargazer(reg.mco,reg.iv, type="text")
+```
+**iv) Cuarto punto**
+
+Comparacion MCO, IV, M2CO
+```{r eval=FALSE}
+stargazer(reg.mco,reg.iv, type="text")
+```
+```{r echo=FALSE=FALSE}
+stargazer(reg.mco,reg.iv, type="text")
+```
+```{r eval=FALSE}
+stargazer(reg.mco, aut.iv, type="text")
+```
+```{r echo=FALSE}
+stargazer(reg.mco, aut.iv, type="text")
+```
+
+Se puede observar que el coeficiente de la variable *educ* aumentó un poco más del doble por medio mínimos cuadrado en dos etapas **(MC2E)**. 
+Además,teniendo todas las variables *edad*, *bicicleta*, *electricidad constantes*, se observa que las mujeres que tienen televisor en promedio tienen *0.003* menos en el número de niños, con respecto a las que si tienen televisor.

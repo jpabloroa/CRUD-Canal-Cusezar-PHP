@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Inicio</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/245px-Salesforce.com_logo.svg.png"
+        type="image/x-icon">
+    <link rel="stylesheet" href="META-DATA/css/style.css">
+    <script src="META-DATA/scripts/script.js"></script>
+    <script src="META-DATA/scripts/conexion-bbdd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+</head>
+
+<body style="position: relative;">
+
+    <!-- App buttons -->
+    <div id="app-toolbar">
+        <div class="tools">
+            <button onclick="openBox('actualizar')">Actualizar</button>
+            <button onclick="openBox('insertar')">Agregar</button>
+            <button onclick="openBox('filtrar')">Filtrar</button>
+            <button onclick="openBox('contacto')">Asistente de contacto</button>
+            <!--<form id="formulario-buscar">
+                <select></select>
+                Buscar<input name="valor" type="search" onchange="buscarPorColumna()">
+            </form>-->
+        </div>
+    </div>
+
+    <!-- Body app -->
+    <div id="app-module">
+        <div id="resp-table">
+            <div id="resp-table-caption"></div>
+            <div id="resp-table-header">
+                <div class="table-header-cell">Fecha de creación</div>
+                <div class="table-header-cell">Viable</div>
+                <div class="table-header-cell">Nombre</div>
+                <div class="table-header-cell">Correo</div>
+                <div class="table-header-cell">Celular</div>
+                <div class="table-header-cell">Medio Publicitario</div>
+                <div class="table-header-cell">Zona Búsqueda</div>
+                <div class="table-header-cell">Proyecto de Interés</div>
+                <div class="table-header-cell">Gestión desde zero S/V</div>
+                <div class="table-header-cell">Habeas Data</div>
+                <div class="table-header-cell">Contacto</div>
+                <div class="table-header-cell">Contacto Efectivo</div>
+                <!--<div class="table-header-cell">Fecha Último Contacto</div>-->
+                <div class="table-header-cell">Calificado</div>
+                <!--<div class="table-header-cell">Proyecto Calificado</div>-->
+                <!--<div class="table-header-cell">Visita agendada</div>-->
+                <div class="table-header-cell">Fecha visita</div>
+                <div class="table-header-cell">Visita Efectiva</div>
+                <!--<div class="table-header-cell">Fecha visita efectiva</div>-->
+                <div class="table-header-cell">Estado</div>
+                <div class="table-header-cell">Asignado a</div>
+            </div>
+            <div id="resp-table-body">
+                <!-- Clientes desplegados aqui -->
+                <!--<div class="resp-table-row" id="cliente-25" onclick="accionar()" onblur="getClientData(this)">
+                    <div class="table-body-cell" contenteditable="true" title="titulo">prueba1</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba2</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba3</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba4</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba5</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba6</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba7</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba8</div>
+                    <div class="table-body-cell" contenteditable="true" title="perico">prueba9</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba10</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba11</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba12</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba13</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba14</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba15</div>
+                    <div class="table-body-cell" contenteditable="true" title="completo">prueba16</div>
+                    <div class="table-body-cell" contenteditable="true" title="prueba20">prueba17</div>
+                    <div class="table-body-cell" contenteditable="true" title="prueba20">prueba18</div>
+                    <div class="table-body-cell" contenteditable="true" title="prueba20">prueba19</div>
+                    <div class="table-body-cell" contenteditable="true" title="prueba20">prueba20</div>
+                    <div id="editar">X</div>
+                </div>-->
+
+
+
+                <!---->
+            </div>
+            <div id="resp-table-footer">
+                <div class="table-footer-cell">Total</div>
+                <div class="table-footer-cell"></div>
+                <div class="table-footer-cell"></div>
+                <div class="table-footer-cell"></div>
+                <div class="table-footer-cell"></div>
+            </div>
+        </div>
+
+        <!-- Toolkit -->
+        <div id="app-options">
+            <div id="box-respuesta">
+
+                <button id="close-button" onclick="closeBox(this)">X</button>
+            </div>
+            <div id="box-actualizar">
+                <h1>Actualizar</h1>
+                <h3>¿Desea actualizar?</h3>
+                <br>
+                <button onclick="cargarClientes()">Si</button><button onclick="closeBox()">No</button>
+                <button id="close-button" onclick="closeBox(this)">X</button>
+            </div>
+            <div id="box-insertar">
+                <h1>Insertar</h1>
+                <button onclick="openSheet(this)">xlsx</button><button onclick="openSheet(this)">Nuevo</button>
+                <div id="xlsx" class="sheet">
+                    <label>Seleccione el tipo de archivo</label> <input id="file" type="file">
+                    <button onclick="readCSV(this)">Insertar</button>
+                    <script>
+                        var ExcelToJSON = function () {
+
+                            this.parseExcel = function (file) {
+                                var reader = new FileReader();
+
+                                reader.onload = function (e) {
+                                    var data = e.target.result;
+                                    var workbook = XLSX.read(data, {
+                                        type: 'binary'
+                                    });
+
+                                    workbook.SheetNames.forEach(function (sheetName) {
+                                        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                                        insertarCliente("xlsx", XL_row_object);
+                                    })
+                                };
+
+                                reader.onerror = function (ex) {
+                                    console.log(ex);
+                                };
+
+                                reader.readAsBinaryString(file);
+                            };
+                        };
+
+                        function readCSV() {
+                            var elem = document.getElementById("file");
+                            console.log("Archivo: " + elem.value);
+                            new ExcelToJSON().parseExcel(elem.files[0]);
+                        }
+                    </script>
+                </div>
+                <button id="close-button" onclick="closeBox(this)">X</button>
+            </div>
+            <div id="box-filtrar">
+                <h1>Filtrar</h1>
+                <div class="content"></div>
+                <button id="close-button" onclick="closeBox(this)">X</button>
+            </div>
+            <div id="box-contacto">
+                <h1>Bienvenido al asistente de envío de WhatsApp</h1>
+                <button onclick="enviarWhatsAppPorProyecto(this)">WhatsApp</button>
+                <button onclick="enviarCorreoPorProyecto(this)">Correo</button>
+                <div class="content"></div>
+                <button id="close-button" onclick="closeBox(this)">X</button>
+            </div>
+        </div>
+    </div>
+    <div id="context-menu-deployable"></div>
+</body>
+
+</html>
