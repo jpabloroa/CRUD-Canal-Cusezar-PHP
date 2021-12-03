@@ -130,7 +130,7 @@ function setEditable(el) {
             element.contentEditable = "true";
             element.getElementsByTagName("select")[0].onchange = function () {
                 if (element.getElementsByTagName("select")[0].value) {
-                    element.getElementsByTagName("input")[0].value = new Date().toISOString();
+                    element.getElementsByTagName("input")[0].value = new Date().toISOString().substring(0, 10);
                     var obj = getClienteFromDiv(element);
                     actualizarCliente(obj);
                     console.log(` ¡ Actualizado el cliente ${obj.codigoConteo} !${obj.nombre} `);
@@ -180,7 +180,7 @@ function getClienteFromDiv(element, hasChanged) {
             } else {
                 if (array[i].getAttribute("tipo") != "opcion-texto") {
                     console.log(array[i].getElementsByTagName("input")[0].value);
-                    obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : new Date(array[i].getElementsByTagName("input")[0].value).toISOString();
+                    obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
                 } else {
                     obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == null) ? null : array[i].getElementsByTagName("input")[0].value;
                 }
