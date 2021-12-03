@@ -1,5 +1,5 @@
 <?php
-require_once PROJECT_ROOT_PATH . "/Modelo/Database.php";
+require_once PROJECT_ROOT_PATH . "/Model/Database.php";
 
 class UserModel extends Database
 {
@@ -16,12 +16,26 @@ class UserModel extends Database
         $count = 0;
         foreach ($clientes as $cliente) {
             $result = $this->insert(
-                //
-                "INSERT INTO clientes 
-                (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) 
-                VALUES 
-                (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                //
+                "INSERT INTO clientes (
+                fechaDeCreacion,
+                viable,
+                nombre,
+                correo,
+                celular,
+                medioPublicitario,
+                zonaBusqueda,
+                proyectoDeInteres,
+                gestionDesdeSalaDeVentas,
+                habeasData,
+                fechaDeContacto,
+                fechaDeContactoEfectivo,
+                proyectoCalificado,
+                fechaVisitaAgendada,
+                fechaVisitaEfectiva,
+                estado,
+                fechaModificacionEstado,
+                asignadoA
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 $cliente
             );
             if ($result) {
@@ -31,29 +45,44 @@ class UserModel extends Database
         return $count;
     }
 
-    public function updateCliente($parametro = 0, $cliente = [])
+    public function updateCliente($parametro, $cliente = [])
     {
         if (!is_numeric($parametro)) {
-            throw new Exception("Error de sintáxis, compruebe que el código sea numérico");
+            throw new Exception("Error de sintáxis, compruebe si parametro es de tipo numérico ");
         }
         return $this->insert(
-            //
             "UPDATE clientes SET
-                ? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?,? = ?
+                fechaDeCreacion = ?,
+                viable = ?,
+                nombre = ?,
+                correo = ?,
+                celular = ?,
+                medioPublicitario = ?,
+                zonaBusqueda = ?,
+                proyectoDeInteres = ?,
+                gestionDesdeSalaDeVentas = ?,
+                habeasData = ?,
+                fechaDeContacto = ?,
+                fechaDeContactoEfectivo = ?,
+                proyectoCalificado = ?,
+                fechaVisitaAgendada = ?,
+                fechaVisitaEfectiva = ?,
+                estado = ?,
+                fechaModificacionEstado = ?,
+                asignadoA = ?
+                )
             WHERE codigoConteo = $parametro",
-            //
             $cliente
         );
     }
-
-    public function deleteCliente($parametro = 0)
-    {
+    public function deleteCliente($parametro = 0){
         return $this->select(
             "DELETE FROM clientes WHERE codigoConteo = ?",
             ["i", $parametro]
         );
     }
 }
+
 
 class Cliente
 {

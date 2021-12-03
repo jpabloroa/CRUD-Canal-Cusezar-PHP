@@ -33,7 +33,8 @@ class Database
     public function insert($query = "", $params = [])
     {
         try {
-            $stmt = $this->executeStatementMultipleParams($query, $params);
+            //$stmt = $this->executeStatementMultipleParams($query, $params);
+            $stmt = $this->executeStatementWithOutBinding($query);
             $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             $stmt->close();
             return $result;
@@ -77,50 +78,47 @@ class Database
 
             if ($params && count($params) >= 18) {
                 $stmt->bind_param(
-                    "isisbsssssssssssssbsbsisisssisisssisss",
+                    "ibssssssbbiisiisis",
                     // Parametros
-                    array_keys($params)[0],
                     $params[0],
-                    array_keys($params)[1],
                     $params[1],
-                    array_keys($params)[2],
                     $params[2],
-                    array_keys($params)[3],
                     $params[3],
-                    array_keys($params)[4],
                     $params[4],
-                    array_keys($params)[5],
                     $params[5],
-                    array_keys($params)[6],
                     $params[6],
-                    array_keys($params)[7],
                     $params[7],
-                    array_keys($params)[8],
                     $params[8],
-                    array_keys($params)[9],
                     $params[9],
-                    array_keys($params)[10],
                     $params[10],
-                    array_keys($params)[11],
                     $params[11],
-                    array_keys($params)[12],
                     $params[12],
-                    array_keys($params)[13],
                     $params[13],
-                    array_keys($params)[14],
                     $params[14],
-                    array_keys($params)[15],
                     $params[15],
-                    array_keys($params)[16],
                     $params[16],
-                    array_keys($params)[17],
                     $params[17],
-                    array_keys($params)[18],
                     $params[18]
-
                 );
             } else {
                 throw new Exception("Error de sintáxis, compruebe el tamaño del typeOfValues y params ");
+            }
+
+            $stmt->execute();
+
+            return $stmt;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    private function executeStatementWithOutBinding($query = "")
+    {
+        try {
+            $stmt = $this->connection->prepare($query);
+
+            if ($stmt === false) {
+                throw new Exception("No es posible ejecutar la sentencia: " . $query);
             }
 
             $stmt->execute();
