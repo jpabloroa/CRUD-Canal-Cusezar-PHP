@@ -130,7 +130,7 @@ function setEditable(el) {
             element.contentEditable = "true";
             element.getElementsByTagName("select")[0].onchange = function () {
                 if (element.getElementsByTagName("select")[0].value) {
-                    element.getElementsByTagName("input")[0].value = new Date().toISOString().substring(0, 10);
+                    element.getElementsByTagName("input")[0].value = new Date().toISOString();
                     var obj = getClienteFromDiv(element);
                     actualizarCliente(obj);
                     console.log(` ¡ Actualizado el cliente ${obj.codigoConteo} !${obj.nombre} `);
