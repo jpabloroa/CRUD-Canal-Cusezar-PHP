@@ -34,7 +34,7 @@ class Database
     {
         try {
             //$stmt = $this->executeStatementMultipleParams($query, $params);
-            $stmt = $this->executeStatementWithOutBinding($query);
+            $stmt = $this->executeStatementMultipleParams($query);
             $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             $stmt->close();
             return $result;
