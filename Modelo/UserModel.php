@@ -35,15 +35,14 @@ class UserModel extends Database
 
     public function updateCliente($parametro, $cliente = [])
     {
-        try {
-            if (!is_numeric($parametro)) {
-                throw new Exception("Error de sintáxis, compruebe si parametro es de tipo numérico ");
-            }
-            /*foreach($cliente as $param){
+        if (!is_numeric($parametro)) {
+            throw new Exception("Error de sintáxis, compruebe si parametro es de tipo numérico ");
+        }
+        /*foreach($cliente as $param){
             $cliente[$param] = ()?null:$cliente[$param];
         }*/
-            return $this->insert_update(
-                "UPDATE clientes SET 
+        return $this->insert_update(
+            "UPDATE clientes SET 
             viable = ?,
             nombre = ?,
             correo = ?,
@@ -62,11 +61,8 @@ class UserModel extends Database
             fechaModificacionEstado = ?,
             asignadoA = ?
             WHERE codigoConteo = ?",
-                $cliente
-            );
-        } catch (Error $e) {
-            throw new Exception($e);
-        }
+            $cliente
+        );
     }
     public function deleteCliente($parametro = 0)
     {

@@ -18,7 +18,7 @@ class UserController extends BaseController
                     }
 
                     $arrUsers = $userModel->getUsers($intLimit);
-                    $this->sendOutput(200, $arrUsers, [], 'Se cargó(aron) ' . count($arrUsers). ' cliente(s)');
+                    $this->sendOutput(200, $arrUsers, [], 'Se cargó(aron) ' . count($arrUsers) . ' cliente(s)');
                 } catch (Error $e) {
                     $this->sendOutput(500, [], ['Internal Server Error - ' . $e->getMessage()], 'Detalles: ' . $e->getMessage());
                 }
@@ -29,7 +29,7 @@ class UserController extends BaseController
 
                     $data = json_decode(file_get_contents('php://input'), true);
                     $addedUsers = $userModel->addClientes($data);
-                    $this->sendOutput(200, [$addedUsers." clientes cargados"], ['Registros agregados correctamente'], 'Se cargó(aron) ' . $addedUsers. ' cliente(s)');
+                    $this->sendOutput(200, [$addedUsers . " clientes cargados"], ['Registros agregados correctamente'], 'Se cargó(aron) ' . $addedUsers . ' cliente(s)');
                 } catch (Error $e) {
                     $this->sendOutput(500, [], ['Internal Server Error - ' . $e->getMessage()], 'Detalles: ' . $e->getMessage());
                 }
@@ -40,7 +40,7 @@ class UserController extends BaseController
 
                     $data = json_decode(file_get_contents('php://input'), true);
                     $arrUsers = $userModel->updateCliente($UrlPaths[1], $data);
-                    $this->sendOutput(200, $arrUsers, ['Registro actualizado correctamente'], 'Se cargó(aron) ' . count($arrUsers). ' cliente(s)');
+                    $this->sendOutput(200, $arrUsers, ['Registro actualizado correctamente'], 'Se modificó el registro ' . $data["codigoConteo"] . ' correctamente');
                 } catch (Error $e) {
                     $this->sendOutput(500, [], ['Internal Server Error - ' . $e->getMessage()], 'Detalles: ' . $e->getMessage());
                 }
@@ -50,7 +50,7 @@ class UserController extends BaseController
                     $userModel = new UserModel();
 
                     $arrUsers = $userModel->deleteCliente($UrlPaths[1]);
-                    $this->sendOutput(200, $arrUsers, ['Registro eliminado correctamente'], 'Se cargó(aron) ' . count($arrUsers). ' cliente(s)');
+                    $this->sendOutput(200, $arrUsers, ['Registro eliminado correctamente'], 'Se cargó(aron) ' . count($arrUsers) . ' cliente(s)');
                 } catch (Error $e) {
                     $this->sendOutput(500, [], ['Internal Server Error - ' . $e->getMessage()], 'Detalles: ' . $e->getMessage());
                 }
