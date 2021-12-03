@@ -8,7 +8,7 @@ window.onload = function () {
 function cargarClientes() {
     let response = {};
     const ajaxrequest = new XMLHttpRequest();
-    var url = "clientes/ver/?formato=json";
+    var url = "index.php";
     ajaxrequest.open("GET", url, true);
     ajaxrequest.onreadystatechange = function () {
         if (ajaxrequest.readyState == 4) {
@@ -234,7 +234,7 @@ function insertarCliente(formato, valor) {
     let object = {};
     object.datos = array;
     const ajaxrequest = new XMLHttpRequest();
-    var url = "clientes/";
+    var url = "index.php";
     ajaxrequest.open("POST", url, true);
     ajaxrequest.onreadystatechange = function () {
         if (ajaxrequest.readyState == 4) {
@@ -264,7 +264,7 @@ function insertarCliente(formato, valor) {
 function actualizarCliente(object) {
 
     const ajaxrequest = new XMLHttpRequest();
-    var url = `clientes/${object.codigoConteo} `;
+    var url = `index.php/${object.codigoConteo} `;
     ajaxrequest.open("PUT", url, true);
     ajaxrequest.onreadystatechange = function () {
         if (ajaxrequest.readyState == 4) {

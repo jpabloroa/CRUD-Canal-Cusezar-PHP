@@ -1,5 +1,5 @@
 <?php
 define("DB_HOST", "localhost");
-define("DB_USERNAME", "demo");
-define("DB_PASSWORD", "demo");
-define("DB_DATABASE_NAME", "rest_api_demo");
+define("DB_USERNAME", "jpablo");
+define("DB_PASSWORD", "Nad95037");
+define("DB_DATABASE_NAME", "cusezar");
