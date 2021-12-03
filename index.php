@@ -15,7 +15,6 @@ for ($i = 0; $i < count($inputUri); $i++) {
             }
         } else {
 
-            echo "<h1>Ey no</h1><script>alert('Será redirigido a index.html')</script>";
             //
             if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
                 $link = "https";
@@ -32,11 +31,9 @@ for ($i = 0; $i < count($inputUri); $i++) {
             // Append the requested resource location to the URL
             $link .= substr($URL, 0, -9) . "index.html";
 
-            echo $link;
-
-            /*
+            //
             header("location: $link");
-            exit;*/
+            exit;
         }
     }
 }
