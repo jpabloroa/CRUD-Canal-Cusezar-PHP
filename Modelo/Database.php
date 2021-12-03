@@ -76,7 +76,7 @@ class Database
                 throw new Exception("No es posible ejecutar la sentencia: " . $query);
             }
 
-            if ($params && count($params) >= 18) {
+            if ($params && count($params) >= 1) {
                 $stmt->bind_param(
                     "ibssssssbbiisiisis",
                     // Parametros
@@ -101,7 +101,7 @@ class Database
                     $params[18]
                 );
             } else {
-                throw new Exception("Error de sintáxis, compruebe el tamaño del typeOfValues y params ");
+                throw new Exception("Error de sintáxis, compruebe el tamaño de params ");
             }
 
             $stmt->execute();
