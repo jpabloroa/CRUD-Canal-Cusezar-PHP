@@ -13,6 +13,9 @@ for ($i = 0; $i < count($inputUri); $i++) {
     }
 }
 
+echo count($inputUri);
+echo count($parsedUri);
+
 for ($i = 0; $i < count($parsedUri); $i++) {
 echo " $i - $parsedUri[$i] <br>";
 }
