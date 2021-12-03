@@ -43,7 +43,7 @@ function nuevaFilaCliente(columna, title, info, valor, option) {
             valorHTML = `<select>${(valor == 1) ? "<option selected='selected' value='true'>SI</option><option value='false'>NO</option>" : "<option selected='selected' value='false'>NO</option><option value='true'>SI</option>"}</select>`;
             break;
         case "opcion-fecha":
-            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null) ? "value='" + new Date(valor).toISOString().substring(0, 10) + "'" : ""} style="display:none;" type="date">`;
+            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null) ? "value='" + valor + "'" : ""} style="display:none;" type="date">`;
             break;
         case "opcion-texto":
             valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null) ? "value='" + valor + "'" : ""} style="display:none;" type="text">`;
