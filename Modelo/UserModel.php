@@ -23,7 +23,7 @@ class UserModel extends Database
                 correo,
                 celular,
                 medioPublicitario,
-                proyectoDeInteres,
+                proyectoDeInteres
             ) VALUES (?,?,?,?,?,?)",
                 $cliente
             );
