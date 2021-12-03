@@ -5,7 +5,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode('/', $uri);
 
 for ($i = 0; $i < count($uri); $i++) {
-    echo "-" . $i . ": " . $uri[$i]."<br>";
+    echo "- " . $i . ": " . $uri[$i]."<br>";
 }
  
 /*if ((isset($uri[2]) && $uri[2] != 'user') || !isset($uri[3])) {
