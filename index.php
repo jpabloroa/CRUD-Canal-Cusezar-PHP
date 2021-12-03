@@ -14,7 +14,8 @@ for ($i = 0; $i < count($inputUri); $i++) {
                 $k++;
             }
         } else {
-
+            echo "viva el perez";
+            /*
             //
             if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
                 $link = "https";
@@ -32,27 +33,15 @@ for ($i = 0; $i < count($inputUri); $i++) {
             $link .= substr($URL, -9) . "index.html";
 
             header("location: $link");
-            exit;
+            exit;*/
         }
     }
 }
 
-echo "<br>";
-
-echo "Array recibido" . count($inputUri);
-echo "<br>";
-echo "Array parseado" . count($parsedUri);
-echo "<br>";
-
-for ($i = 0; $i < count($parsedUri); $i++) {
-    echo " $i - $parsedUri[$i] <br>";
-}
-
-if ($parsedUri) {
+if (isset($parsedUri[0]) && $parsedUri == "clientes") {
+    echo "calmasion";
 }
 
 require PROJECT_ROOT_PATH . "/Controlador/api/UserController.php";
 
 $objFeedController = new UserController();
-$strMethodName = $uri[3] . 'Action';
-$objFeedController->{$strMethodName}();
