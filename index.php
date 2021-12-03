@@ -39,9 +39,10 @@ for ($i = 0; $i < count($inputUri); $i++) {
 }
 
 if (isset($parsedUri[0]) && $parsedUri[0] == "clientes") {
-    echo "calmasion";
+    if(isset($parsedUri[1])){
+        require PROJECT_ROOT_PATH . "/Controlador/api/UserController.php";
+
+    $objFeedController = new UserController();
+    $objFeedController->{$parsedUri[1]}();
+    }
 }
-
-require PROJECT_ROOT_PATH . "/Controlador/api/UserController.php";
-
-$objFeedController = new UserController();

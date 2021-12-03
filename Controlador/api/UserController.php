@@ -4,7 +4,7 @@ class UserController extends BaseController
     /**
      * "/user/list" Endpoint - Get list of users
      */
-    public function listAction()
+    public function lista()
     {
         $requestMethod = $_SERVER["REQUEST_METHOD"];
         $arrQueryStringParams = $this->getQueryStringParams();
