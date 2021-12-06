@@ -176,7 +176,8 @@ function getClienteFromDiv(element, hasChanged) {
     for (var i = 0; i < array.length; i++) {
         if (array[i].getElementsByTagName("select").length > 0) {
             if (array[i].getAttribute("tipo") == "opcion") {
-                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("select")[0].value == "true") ? true : false;
+                //obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("select")[0].value == "true") ? true : false;
+                obj[array[i].getAttribute("columna")] = array[i].getElementsByTagName("select")[0].value;
                 //obj[array[i].getAttribute("columna")] = "tipo:opcion";
             } else if (array[i].getAttribute("tipo") == "opcion-fecha") {
                 obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == null) ? null : array[i].getElementsByTagName("input")[0].value;
