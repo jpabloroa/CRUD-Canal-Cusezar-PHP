@@ -49,7 +49,7 @@ function nuevaFilaCliente(columna, title, info, valor, option) {
             valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null) ? "value='" + valor + "' style='display:block;'" : " style='display:none;'"} type="text">`;
             break;
         case "fecha":
-            valorHTML = `<input type="date" ${(valor == null) ? "" : "value='" + valor + "'"}>`;
+            valorHTML = `<input type="date" ${(valor == null || valor == "0000-00-00") ? "" : "value='" + valor + "'"}>`;
             break;
         default:
             valorHTML = `${(valor == null) ? "-" : valor}`
