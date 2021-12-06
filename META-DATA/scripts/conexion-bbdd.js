@@ -180,7 +180,7 @@ function getClienteFromDiv(element, hasChanged) {
                 obj[array[i].getAttribute("columna")] = array[i].getElementsByTagName("select")[0].value;
                 //obj[array[i].getAttribute("columna")] = "tipo:opcion";
             } else if (array[i].getAttribute("tipo") == "opcion-fecha") {
-                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == null) ? null : array[i].getElementsByTagName("input")[0].value;
+                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
                 //obj[array[i].getAttribute("columna")] = "tipo:opcion-fecha";
             } else if (array[i].getAttribute("tipo") == "opcion-texto") {
                 obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
