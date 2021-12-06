@@ -24,7 +24,7 @@ class UserModel extends Database
                 celular,
                 medioPublicitario,
                 proyectoDeInteres
-            ) VALUES (?,?,?,?,?,?)",
+            ) VALUES (now(),?,?,?,?,?)",
                 $cliente
             );
             if ($result) {
