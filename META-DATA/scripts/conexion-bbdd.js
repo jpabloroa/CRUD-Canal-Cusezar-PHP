@@ -129,7 +129,7 @@ function setEditable(el) {
         case "opcion-fecha":
             element.contentEditable = "true";
             element.getElementsByTagName("select")[0].onchange = function () {
-                if (element.getElementsByTagName("select")[0].value) {
+                if (element.getElementsByTagName("select")[0].value || element.getElementsByTagName("select")[0].value == "true") {
                     element.getElementsByTagName("input")[0].value = new Date().toISOString().substring(0, 10);
                     var obj = getClienteFromDiv(element);
                     actualizarCliente(obj);
