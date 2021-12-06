@@ -43,10 +43,10 @@ function nuevaFilaCliente(columna, title, info, valor, option) {
             valorHTML = `<select>${(valor == 1) ? "<option selected='selected' value='true'>SI</option><option value='false'>NO</option>" : "<option selected='selected' value='false'>NO</option><option value='true'>SI</option>"}</select>`;
             break;
         case "opcion-fecha":
-            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null && valor != "0000-00-00") ? "value='" + new Date(valor).toISOString().substring(0,10) + "'" : ""} style="display:none;" type="date">`;
+            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null && valor != "0000-00-00") ? "value='" + new Date(valor).toISOString().substring(0, 10) + "'" : ""} style="display:none;" type="date">`;
             break;
         case "opcion-texto":
-            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null) ? "value='" + valor + "'" : ""} style="display:none;" type="text">`;
+            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null) ? "value='" + valor + "' style='display:block;'" : " style='display:none;'"} type="text">`;
             break;
         case "fecha":
             valorHTML = `<input type="date" ${(valor == null) ? "" : "value='" + valor + "'"}>`;
@@ -178,17 +178,15 @@ function getClienteFromDiv(element, hasChanged) {
             if (array[i].getAttribute("tipo") == "opcion") {
                 obj[array[i].getAttribute("columna")] = array[i].getElementsByTagName("select")[0].value;
             } else {
-                if (array[i].getAttribute("tipo") != "opcion-texto") {
-                    console.log(array[i].getElementsByTagName("input")[0].value);
-                    obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
-                } else {
+                if (array[i].getAttribute("tipo") == "opcion-fecha") {
                     obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == null) ? null : array[i].getElementsByTagName("input")[0].value;
+                } else if (array[i].getAttribute("tipo") == "opcion-texto") {
+                    obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
                 }
             }
-
         } else {
             if (array[i].getAttribute("tipo") == "fecha") {
-                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : new Date(array[i].getElementsByTagName("input")[0].value).toISOString();
+                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : new Date(array[i].getElementsByTagName("input")[0].value).toISOString().substring(0, 10);
             } else {
                 obj[array[i].getAttribute("columna")] = array[i].innerHTML;
             }
