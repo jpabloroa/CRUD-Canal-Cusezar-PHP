@@ -176,21 +176,21 @@ function getClienteFromDiv(element, hasChanged) {
     for (var i = 0; i < array.length; i++) {
         if (array[i].getElementsByTagName("select").length > 0) {
             if (array[i].getAttribute("tipo") == "opcion") {
-                //obj[array[i].getAttribute("columna")] = array[i].getElementsByTagName("select")[0].value;
-                obj[array[i].getAttribute("columna")] = "tipo:opcion";
+                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("select")[0].value == "true") ? true : false;
+                //obj[array[i].getAttribute("columna")] = "tipo:opcion";
             } else if (array[i].getAttribute("tipo") == "opcion-fecha") {
-                //obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == null) ? null : array[i].getElementsByTagName("input")[0].value;
-                obj[array[i].getAttribute("columna")] = "tipo:opcion-fecha";
+                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == null) ? null : array[i].getElementsByTagName("input")[0].value;
+                //obj[array[i].getAttribute("columna")] = "tipo:opcion-fecha";
             } else if (array[i].getAttribute("tipo") == "opcion-texto") {
-                //obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
-                obj[array[i].getAttribute("columna")] = "tipo:opcion-texto";
+                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
+                //obj[array[i].getAttribute("columna")] = "tipo:opcion-texto";
             }
         } else if (array[i].getAttribute("tipo") == "fecha") {
-            //obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
-            obj[array[i].getAttribute("columna")] = "tipo:fecha";
+            obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value.substring(0, 10);
+            //obj[array[i].getAttribute("columna")] = "tipo:fecha";
         } else {
-            //obj[array[i].getAttribute("columna")] = array[i].innerHTML;
-            obj[array[i].getAttribute("columna")] = "tipo:que verga";
+            obj[array[i].getAttribute("columna")] = array[i].innerHTML;
+            //obj[array[i].getAttribute("columna")] = "tipo:que verga";
         }
 
     }
