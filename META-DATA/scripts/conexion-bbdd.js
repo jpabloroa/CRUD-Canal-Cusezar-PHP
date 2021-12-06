@@ -186,7 +186,7 @@ function getClienteFromDiv(element, hasChanged) {
             }
         } else {
             if (array[i].getAttribute("tipo") == "fecha") {
-                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : new Date(array[i].getElementsByTagName("input")[0].value).toISOString().substring(0, 10);
+                obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
             } else {
                 obj[array[i].getAttribute("columna")] = array[i].innerHTML;
             }
