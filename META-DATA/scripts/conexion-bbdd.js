@@ -89,10 +89,10 @@ document.addEventListener('contextmenu', function (e) {
     context_menu.style.display = "block";
     context_menu.style.top = `${e.clientY - 10}px`;
     context_menu.style.left = `${e.clientX - 10}px`;
-    context_menu.onblur = function () {
+    context_menu.onblur = function (e) {
         context_menu.style.display = "none";
     };
-    var element = document.elementFromPoint(e.screenX, e.clientY);
+    var element = document.elementFromPoint(e.clientX - 10, e.clientY - 10);
     context_menu.innerHTML = (element.getAttribute("info") == null) ? `No hay información` : element.getAttribute("info").replace("-", element.getAttribute("valor"));
     e.preventDefault();
 }, false);
