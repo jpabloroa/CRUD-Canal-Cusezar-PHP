@@ -87,8 +87,8 @@ function cargarClientes_agregarFila(obj) {
 document.addEventListener('contextmenu', function (e) {
     var context_menu = document.getElementById("context-menu-deployable");
     context_menu.style.display = "block";
-    context_menu.style.top = `${e.clientY - 5}px`;
-    context_menu.style.left = `${e.clientX - 5}px`;
+    context_menu.style.top = `${e.clientY - 10}px`;
+    context_menu.style.left = `${e.clientX - 10}px`;
     context_menu.onblur = function () {
         context_menu.style.display = "none";
     };
