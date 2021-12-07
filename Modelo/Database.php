@@ -129,7 +129,8 @@ class Database
 
             //if ($params && count($params) >= 1) {
             $stmt->bind_param(
-                "bssssssbbiisiisisi",
+                //"bssssssbbiisiisisi",
+                "bssssssbbsssssssss",
                 // Parametros
                 $params["viable"],
                 $params["nombre"],

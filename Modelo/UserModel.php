@@ -65,6 +65,7 @@ class UserModel extends Database
             $cliente
         );
     }
+    
     public function deleteCliente($parametro = 0)
     {
         return $this->select(
