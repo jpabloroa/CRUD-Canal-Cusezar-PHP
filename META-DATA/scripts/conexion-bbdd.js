@@ -190,7 +190,7 @@ function getClienteFromDiv(element, hasChanged) {
             obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value.substring(0, 10);
             //obj[array[i].getAttribute("columna")] = "tipo:fecha";
         } else {
-            obj[array[i].getAttribute("columna")] = array[i].innerHTML;
+            obj[array[i].getAttribute("columna")] = (array[i].innerHTML == "-") ? null : array[i].innerHTML;
             //obj[array[i].getAttribute("columna")] = "tipo:que verga";
         }
 
