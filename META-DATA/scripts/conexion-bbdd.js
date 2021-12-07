@@ -46,7 +46,7 @@ function nuevaFilaCliente(columna, title, info, valor, option) {
             valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null && valor != "0000-00-00") ? "value='" + new Date(valor).toISOString().substring(0, 10) + "'" : ""} style="display:none;" type="date">`;
             break;
         case "opcion-texto":
-            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null) ? "value='" + valor + "' style='display:block;'" : " style='display:none;'"} type="text">`;
+            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null) ? "value='" + valor + "' style='display:inline-block;'" : " style='display:none;'"} type="text">`;
             break;
         case "fecha":
             valorHTML = `<input type="date" ${(valor == null || valor == "0000-00-00") ? "" : "value='" + valor + "'"}>`;
@@ -114,7 +114,7 @@ function setEditable(el) {
             element.contentEditable = "true";
             element.getElementsByTagName("select")[0].onchange = function () {
                 if (element.getElementsByTagName("select")[0].value) {
-                    element.getElementsByTagName("input")[0].style.display = "block";
+                    element.getElementsByTagName("input")[0].style.display = "inline-block";
                     element.getElementsByTagName("input")[0].onchange = function () {
                         var obj = getClienteFromDiv(element);
                         actualizarCliente(obj);
