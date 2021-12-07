@@ -39,6 +39,12 @@ class UserModel extends Database
         if (!is_numeric($parametro)) {
             throw new Exception("Error de sintáxis, compruebe si parametro es de tipo numérico ");
         }
+
+        /*foreach ($cliente as $param) {
+            if ($param == "") {
+            }
+        }*/
+
         return $this->insert_update(
             "UPDATE clientes SET 
             viable = ?,
