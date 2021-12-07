@@ -87,14 +87,14 @@ function cargarClientes_agregarFila(obj) {
 document.addEventListener('contextmenu', function (e) {
     var context_menu = document.getElementById("context-menu-deployable");
     context_menu.style.display = "block";
-    context_menu.style.top = `${e.clientY}px`;
+    context_menu.style.top = `${e.screenY}px`;
     context_menu.style.left = `${e.screenX}px`;
     context_menu.onblur = function () {
         context_menu.style.display = "none";
     };
     var element = document.elementFromPoint(e.screenX, e.clientY);
     //context_menu.innerHTML = (element.getAttribute("info") == null) ? `No hay información` : element.getAttribute("info").replace("-", element.getAttribute("valor"));
-    context_menu.innerHTML = `Y-> ${e.clientY}px / X-> ${e.screenX}px`;
+    context_menu.innerHTML = `Y-> ${e.screenY}px / X-> ${e.screenX}px`;
     e.preventDefault();
 }, false);
 
