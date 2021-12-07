@@ -95,20 +95,20 @@ class Database
                 throw new Exception("No es posible ejecutar la sentencia: " . $query);
             }
 
-            //if ($params && count($params) >= 1) {
-            $stmt->bind_param(
-                "sssss",
-                // Parametros
-                //$params["fechaDeCreacion"],
-                $params["nombre"],
-                $params["correo"],
-                $params["celular"],
-                $params["medioPublicitario"],
-                $params["proyectoDeInteres"]
-            );
-            /*} else {
+            if ($params) {
+                $stmt->bind_param(
+                    "ssssss",
+                    // Parametros
+                    $params["viable"],
+                    $params["nombre"],
+                    $params["correo"],
+                    $params["celular"],
+                    $params["medioPublicitario"],
+                    $params["proyectoDeInteres"]
+                );
+            } else {
                 throw new Exception("Error de sintáxis, compruebe el tamaño de params ");
-            }*/
+            }
 
             $stmt->execute();
 
@@ -127,33 +127,32 @@ class Database
                 throw new Exception("No es posible ejecutar la sentencia: " . $query);
             }
 
-            //if ($params && count($params) >= 1) {
-            $stmt->bind_param(
-                //"bssssssbbiisiisisi",
-                "issssssiisssssssss",
-                // Parametros
-                $params["viable"],
-                $params["nombre"],
-                $params["correo"],
-                $params["celular"],
-                $params["medioPublicitario"],
-                $params["zonaBusqueda"],
-                $params["proyectoDeInteres"],
-                $params["gestionDesdeSalaDeVentas"],
-                $params["habeasData"],
-                $params["fechaDeContacto"],
-                $params["fechaDeContactoEfectivo"],
-                $params["proyectoCalificado"],
-                $params["fechaVisitaAgendada"],
-                $params["fechaVisitaEfectiva"],
-                $params["estado"],
-                $params["fechaModificacionEstado"],
-                $params["asignadoA"],
-                $params["codigoConteo"]
-            );
-            /*} else {
+            if ($params) {
+                $stmt->bind_param(
+                    "issssssiisssssssss",
+                    // Parametros
+                    $params["viable"],
+                    $params["nombre"],
+                    $params["correo"],
+                    $params["celular"],
+                    $params["medioPublicitario"],
+                    $params["zonaBusqueda"],
+                    $params["proyectoDeInteres"],
+                    $params["gestionDesdeSalaDeVentas"],
+                    $params["habeasData"],
+                    $params["fechaDeContacto"],
+                    $params["fechaDeContactoEfectivo"],
+                    $params["proyectoCalificado"],
+                    $params["fechaVisitaAgendada"],
+                    $params["fechaVisitaEfectiva"],
+                    $params["estado"],
+                    $params["fechaModificacionEstado"],
+                    $params["asignadoA"],
+                    $params["codigoConteo"]
+                );
+            } else {
                 throw new Exception("Error de sintáxis, compruebe el tamaño de params ");
-            }*/
+            }
 
             $stmt->execute();
 

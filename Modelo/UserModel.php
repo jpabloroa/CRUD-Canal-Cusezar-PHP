@@ -19,12 +19,13 @@ class UserModel extends Database
             $result = $this->insert(
                 "INSERT INTO clientes (
                 fechaDeCreacion,
+                viable,
                 nombre,
                 correo,
                 celular,
                 medioPublicitario,
                 proyectoDeInteres
-            ) VALUES (now(),?,?,?,?,?)",
+            ) VALUES (now(), ?, ?, ?, ?, ?, ?)",
                 $cliente
             );
             if ($result) {
@@ -65,7 +66,7 @@ class UserModel extends Database
             $cliente
         );
     }
-    
+
     public function deleteCliente($parametro = 0)
     {
         return $this->select(
