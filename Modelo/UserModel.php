@@ -15,7 +15,6 @@ class UserModel extends Database
     {
         $count = 0;
         foreach ($clientes as $cliente) {
-            $cliente["fechaDeCreacion"] = date("Y-m-d");
             $result = $this->insert(
                 "INSERT INTO clientes (
                 fechaDeCreacion,
@@ -40,9 +39,6 @@ class UserModel extends Database
         if (!is_numeric($parametro)) {
             throw new Exception("Error de sintáxis, compruebe si parametro es de tipo numérico ");
         }
-        /*foreach($cliente as $param){
-            $cliente[$param] = ()?null:$cliente[$param];
-        }*/
         return $this->insert_update(
             "UPDATE clientes SET 
             viable = ?,
@@ -75,7 +71,6 @@ class UserModel extends Database
         );
     }
 }
-
 
 class Cliente
 {

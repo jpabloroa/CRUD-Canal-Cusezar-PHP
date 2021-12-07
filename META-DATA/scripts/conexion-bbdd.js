@@ -93,7 +93,8 @@ document.addEventListener('contextmenu', function (e) {
         context_menu.style.display = "none";
     };
     var element = document.elementFromPoint(e.screenX, e.clientY);
-    context_menu.innerHTML = (element.getAttribute("info") == null) ? `No hay información` : element.getAttribute("info").replace("-", element.getAttribute("valor"));
+    //context_menu.innerHTML = (element.getAttribute("info") == null) ? `No hay información` : element.getAttribute("info").replace("-", element.getAttribute("valor"));
+    context_menu.innerHTML = `Y-> ${e.clientY}px / X-> ${e.screenX}px`;
     e.preventDefault();
 }, false);
 
