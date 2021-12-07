@@ -187,13 +187,17 @@ function getClienteFromDiv(element, hasChanged) {
                 //obj[array[i].getAttribute("columna")] = "tipo:opcion-texto";
             }
         } else if (array[i].getAttribute("tipo") == "fecha") {
-            obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : new Date(array[i].getElementsByTagName("input")[0].value).toLocaleDateString("es-CO").toISOString().substring(0, 10);
-            //obj[array[i].getAttribute("columna")] = "tipo:fecha";
+            if (array[i].getElementsByTagName("input")[0].value == "") {
+                obj[array[i].getAttribute("columna")] = null;
+            } else {
+                var fecha = new Date(array[i].getElementsByTagName("input")[0].value).toISOString();
+                obj[array[i].getAttribute("columna")] = fecha.toLocaleString("es-CO").substring(0, 10);
+                //obj[array[i].getAttribute("columna")] = "tipo:fecha";
+            }
         } else {
             obj[array[i].getAttribute("columna")] = (array[i].innerHTML == "-") ? null : array[i].innerHTML;
             //obj[array[i].getAttribute("columna")] = "tipo:que verga";
         }
-
     }
     obj.codigoConteo = element.parentNode.id.split("-")[1];
     console.log(obj);
