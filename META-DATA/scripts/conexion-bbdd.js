@@ -187,7 +187,7 @@ function getClienteFromDiv(element, hasChanged) {
                 //obj[array[i].getAttribute("columna")] = "tipo:opcion-texto";
             }
         } else if (array[i].getAttribute("tipo") == "fecha") {
-            obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value.substring(0, 10);
+            obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : new Date(array[i].getElementsByTagName("input")[0].value).toISOString().toLocaleDateString("es-CO").substring(0, 10);
             //obj[array[i].getAttribute("columna")] = "tipo:fecha";
         } else {
             obj[array[i].getAttribute("columna")] = (array[i].innerHTML == "-") ? null : array[i].innerHTML;
