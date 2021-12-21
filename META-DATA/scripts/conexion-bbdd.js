@@ -36,6 +36,16 @@ function cargarClientes() {
     ajaxrequest.send();
 }
 
+/**
+ * Método nuevaFilaCliente
+ * 
+ * @param {string} columna 
+ * @param {string} title 
+ * @param {string} info 
+ * @param {string} valor 
+ * @param {string} option 
+ * @returns {string} 
+ */
 function nuevaFilaCliente(columna, title, info, valor, option) {
     var valorHTML = "";
     switch (option) {
@@ -58,6 +68,12 @@ function nuevaFilaCliente(columna, title, info, valor, option) {
     return `<div class="table-body-cell" onclick="setEditable(this)" onblur="nonEditable(this)" columna="${columna}" title="${title}" info="${info}" tipo="${option}">${valorHTML}</div>`;
 }
 
+/**
+ * Método cargarClientes_agregarFila
+ * 
+ * @param {object} obj 
+ * @returns {string}
+ */
 function cargarClientes_agregarFila(obj) {
     var cliente = obj;
     var tabla = document.createElement("div");
@@ -80,7 +96,6 @@ function cargarClientes_agregarFila(obj) {
     tabla.innerHTML += nuevaFilaCliente("fechaVisitaEfectiva", "Visita efectiva", "El cliente visitó la sala el día -", cliente.fechaVisitaEfectiva, "opcion-fecha");
     tabla.innerHTML += nuevaFilaCliente("estado", "Estado", "El estado del cliente es -", cliente.estado, "texto");
     tabla.innerHTML += nuevaFilaCliente("asignadoA", "Asignado a", "El cliente es gestionado por -", cliente.asignadoA, "texto");
-
     return tabla;
 }
 
@@ -97,6 +112,10 @@ document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
 }, false);
 
+/**
+ * Método setEditable
+ * @param {HTMLElement} el 
+ */
 function setEditable(el) {
     var element = el;
     var tipoElemento = element.getAttribute("tipo");
@@ -170,21 +189,22 @@ function setEditable(el) {
     }
 }
 
-function getClienteFromDiv(element, hasChanged) {
+/**
+ * Método getClienteFromDiv
+ * @param {HTMLElement} element 
+ * @returns 
+ */
+function getClienteFromDiv(element) {
     var array = element.parentNode.getElementsByClassName("table-body-cell");
     let obj = {};
     for (var i = 0; i < array.length; i++) {
         if (array[i].getElementsByTagName("select").length > 0) {
             if (array[i].getAttribute("tipo") == "opcion") {
                 obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("select")[0].value == "true") ? 1 : 0;
-                //obj[array[i].getAttribute("columna")] = array[i].getElementsByTagName("select")[0].value;
-                //obj[array[i].getAttribute("columna")] = "tipo:opcion";
             } else if (array[i].getAttribute("tipo") == "opcion-fecha") {
                 obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "") ? null : array[i].getElementsByTagName("input")[0].value;
-                //obj[array[i].getAttribute("columna")] = "tipo:opcion-fecha";
             } else if (array[i].getAttribute("tipo") == "opcion-texto") {
                 obj[array[i].getAttribute("columna")] = (array[i].getElementsByTagName("input")[0].value == "" || array[i].getElementsByTagName("input")[0].value == "-") ? null : array[i].getElementsByTagName("input")[0].value.toUpperCase();
-                //obj[array[i].getAttribute("columna")] = "tipo:opcion-texto";
             }
         } else if (array[i].getAttribute("tipo") == "fecha") {
             if (array[i].getElementsByTagName("input")[0].value == "") {
@@ -192,23 +212,15 @@ function getClienteFromDiv(element, hasChanged) {
             } else {
                 var fecha = new Date(array[i].getElementsByTagName("input")[0].value).toISOString();
                 obj[array[i].getAttribute("columna")] = fecha.toLocaleString("es-CO").substring(0, 10);
-                //obj[array[i].getAttribute("columna")] = "tipo:fecha";
             }
         } else {
             obj[array[i].getAttribute("columna")] = (array[i].innerHTML == "-") ? null : array[i].innerHTML;
-            //obj[array[i].getAttribute("columna")] = "tipo:que verga";
         }
     }
     obj.codigoConteo = element.parentNode.id.split("-")[1];
     console.log(obj);
     return obj;
 }
-
-function nonEditable(element) {
-
-}
-
-/** */
 
 /**
  * Método <code>POST</code>
@@ -262,7 +274,7 @@ function insertarCliente(formato, valor) {
 /** */
 
 /**
- * 
+ * Método actualizarCliente
  * @param {Object} object 
  */
 function actualizarCliente(object) {
