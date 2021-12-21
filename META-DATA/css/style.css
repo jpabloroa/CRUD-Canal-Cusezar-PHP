@@ -6,7 +6,6 @@ html {
 
 .tools button {
     margin: 1vh 2vw;
-    margin-left: 5vw;
 }
 
 /**/
@@ -18,7 +17,6 @@ html {
     width: auto;
     height: auto;
     margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #context-menu-deployable {
