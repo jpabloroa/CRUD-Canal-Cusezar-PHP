@@ -18,6 +18,7 @@ html {
     width: auto;
     height: auto;
     margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #context-menu-deployable {

@@ -50,13 +50,13 @@ function nuevaFilaCliente(columna, title, info, valor, option) {
     var valorHTML = "";
     switch (option) {
         case "opcion":
-            valorHTML = `<select class="selectpicker">${(valor == 1) ? "<option selected='selected' value='true'>SI</option><option value='false'>NO</option>" : "<option selected='selected' value='false'>NO</option><option value='true'>SI</option>"}</select>`;
+            valorHTML = `<select style="width: 100%;height: 3vh;" class="selectpicker center-block">${(valor == 1) ? "<option selected='selected' value='true'>SI</option><option value='false'>NO</option>" : "<option selected='selected' value='false'>NO</option><option value='true'>SI</option>"}</select>`;
             break;
         case "opcion-fecha":
-            valorHTML = `<select class="selectpicker">${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input class="datepicker" contenteditable="false" ${(valor != null && valor != "0000-00-00") ? "value='" + new Date(valor).toISOString().substring(0, 10) + "'" : ""} style="display:none;" type="date">`;
+            valorHTML = `<select style="width: 100%;height: 3vh;" class="selectpicker center-block">${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input class="" contenteditable="false" ${(valor != null && valor != "0000-00-00") ? "value='" + new Date(valor).toISOString().substring(0, 10) + "'" : ""} style="display:none;" type="date">`;
             break;
         case "opcion-texto":
-            valorHTML = `<select class="selectpicker">${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input class="form-control" contenteditable="false" ${(valor != null) ? "value='" + valor + "' style='display:inline-block;'" : " style='display:none;'"} type="text">`;
+            valorHTML = `<select style="height: 3vh;" class="selectpicker">${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input class="" contenteditable="false" ${(valor != null) ? "value='" + valor + "' style='display:inline-block;'" : " style='display:none;'"} type="text">`;
             break;
         case "fecha":
             valorHTML = `<input class="datepicker" type="date" ${(valor == null || valor == "0000-00-00") ? "" : "value='" + valor + "'"}>`;
@@ -99,7 +99,7 @@ function cargarClientes_agregarFila(obj) {
     return tabla;
 }
 
-document.addEventListener('contextmenu', function (e) {
+/*document.addEventListener('contextmenu', function (e) {
     var context_menu = document.getElementById("context-menu-deployable");
     context_menu.style.display = "block";
     context_menu.style.top = `${e.clientY - 10}px`;
@@ -110,7 +110,7 @@ document.addEventListener('contextmenu', function (e) {
     var element = document.elementFromPoint(e.clientX - 10, e.clientY - 10);
     context_menu.innerHTML = (element.getAttribute("info") == null) ? `No hay información` : element.getAttribute("info").replace("-", element.getAttribute("valor"));
     e.preventDefault();
-}, false);
+}, false);*/
 
 /**
  * Método setEditable
