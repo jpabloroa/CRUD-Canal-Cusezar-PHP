@@ -50,16 +50,16 @@ function nuevaFilaCliente(columna, title, info, valor, option) {
     var valorHTML = "";
     switch (option) {
         case "opcion":
-            valorHTML = `<select>${(valor == 1) ? "<option selected='selected' value='true'>SI</option><option value='false'>NO</option>" : "<option selected='selected' value='false'>NO</option><option value='true'>SI</option>"}</select>`;
+            valorHTML = `<select class="selectpicker">${(valor == 1) ? "<option selected='selected' value='true'>SI</option><option value='false'>NO</option>" : "<option selected='selected' value='false'>NO</option><option value='true'>SI</option>"}</select>`;
             break;
         case "opcion-fecha":
-            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null && valor != "0000-00-00") ? "value='" + new Date(valor).toISOString().substring(0, 10) + "'" : ""} style="display:none;" type="date">`;
+            valorHTML = `<select class="selectpicker">${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input class="datepicker" contenteditable="false" ${(valor != null && valor != "0000-00-00") ? "value='" + new Date(valor).toISOString().substring(0, 10) + "'" : ""} style="display:none;" type="date">`;
             break;
         case "opcion-texto":
-            valorHTML = `<select>${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input contenteditable="false" ${(valor != null) ? "value='" + valor + "' style='display:inline-block;'" : " style='display:none;'"} type="text">`;
+            valorHTML = `<select class="selectpicker">${(valor != null) ? "<option selected='selected' value='true'>SI</option><option>NO</option>" : "<option selected='selected' value='false'>NO</option><option>SI</option>"}</select><input class="form-control" contenteditable="false" ${(valor != null) ? "value='" + valor + "' style='display:inline-block;'" : " style='display:none;'"} type="text">`;
             break;
         case "fecha":
-            valorHTML = `<input type="date" ${(valor == null || valor == "0000-00-00") ? "" : "value='" + valor + "'"}>`;
+            valorHTML = `<input class="datepicker" type="date" ${(valor == null || valor == "0000-00-00") ? "" : "value='" + valor + "'"}>`;
             break;
         default:
             valorHTML = `${(valor == null) ? "-" : valor}`
